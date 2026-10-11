@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f4f7f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  max-width: 650px;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+fieldset {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 18px;
+}
+
+legend {
+  font-weight: bold;
+  color: #34495e;
+  padding: 0 8px;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: #3498db;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.acciones {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  padding: 12px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #219150;
+}
+
+.btn-secundario {
+  background-color: #7f8c8d;
+}
+
+.btn-secundario:hover {
+  background-color: #6c7a7d;
+}
+
+.resultado {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  border-left: 5px solid #3498db;
+}
+
+.hidden {
+  display: none;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: white;
+}
+
+.aprobado { background-color: #27ae60; }
+.reprobado { background-color: #e74c3c; }
+
+.resumen-trimestre {
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 2px dashed #ddd;
+  font-size: 1.1rem;
+}
