@@ -1,0 +1,264 @@
+:root {
+    --tinta: #1d2a2e;
+    --tinta-suave: #5a6a6f;
+    --fondo: #eef1f0;
+    --panel: #ffffff;
+    --verde: #14524f;
+    --verde-oscuro: #0d3b39;
+    --linea: #cfd8d6;
+    --enfoque: #e8a33d;
+    --error: #b3261e;
+
+    --fuente-titulo: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+    --fuente-texto: "Figtree", "Segoe UI", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--fondo);
+    color: var(--tinta);
+    font-family: var(--fuente-texto);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* ---------- Estructura ---------- */
+
+.acceso {
+    display: grid;
+    grid-template-columns: minmax(280px, 5fr) 6fr;
+    min-height: 100vh;
+}
+
+.acceso-lateral {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 4rem 3.5rem;
+    background: var(--verde);
+    color: #f1f6f5;
+}
+
+.acceso-lateral h1 {
+    margin: 0 0 1rem;
+    max-width: 14ch;
+    font-family: var(--fuente-titulo);
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+
+.acceso-lateral p {
+    margin: 0;
+    max-width: 34ch;
+    color: #bcd3d0;
+}
+
+.acceso-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+/* ---------- Pestañas ---------- */
+
+.pestanas {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2.25rem;
+    border-bottom: 1px solid var(--linea);
+}
+
+.pestana {
+    margin-bottom: -1px;
+    padding: 0.6rem 0;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    background: none;
+    color: var(--tinta-suave);
+    font: 600 1rem var(--fuente-texto);
+    cursor: pointer;
+}
+
+.pestana:hover {
+    color: var(--tinta);
+}
+
+.pestana.activa {
+    border-bottom-color: var(--verde);
+    color: var(--tinta);
+}
+
+/* ---------- Formulario ---------- */
+
+.formulario h2 {
+    margin: 0 0 1.75rem;
+    font-family: var(--fuente-titulo);
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.campo {
+    margin-bottom: 1.25rem;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem 0.9rem;
+    border: 1.5px solid var(--linea);
+    border-radius: 6px;
+    background: var(--panel);
+    color: var(--tinta);
+    font: inherit;
+}
+
+input::placeholder {
+    color: #8a999d;
+}
+
+input:hover {
+    border-color: #aebcba;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(232, 163, 61, 0.45);
+}
+
+input:user-invalid {
+    border-color: var(--error);
+}
+
+.campo-clave {
+    position: relative;
+}
+
+.campo-clave input {
+    padding-right: 5.25rem;
+}
+
+.ver-clave {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    padding: 0.35rem 0.6rem;
+    border: 0;
+    border-radius: 4px;
+    background: none;
+    color: var(--verde);
+    font: 600 0.875rem var(--fuente-texto);
+    cursor: pointer;
+}
+
+.ver-clave:hover {
+    background: #e3ecea;
+}
+
+/* ---------- Botones y enlaces ---------- */
+
+.boton {
+    width: 100%;
+    margin-top: 0.75rem;
+    padding: 0.9rem 1rem;
+    border: 0;
+    border-radius: 6px;
+    background: var(--verde);
+    color: #ffffff;
+    font: 600 1rem var(--fuente-texto);
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.boton:hover {
+    background: var(--verde-oscuro);
+}
+
+.boton:active {
+    transform: translateY(1px);
+}
+
+.cambio {
+    margin: 1.5rem 0 0;
+    color: var(--tinta-suave);
+    font-size: 0.95rem;
+}
+
+.enlace {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--verde);
+    font: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+.enlace:hover {
+    color: var(--verde-oscuro);
+}
+
+.pestana:focus-visible,
+.boton:focus-visible,
+.enlace:focus-visible,
+.ver-clave:focus-visible {
+    outline: 3px solid var(--enfoque);
+    outline-offset: 2px;
+}
+
+/* ---------- Móvil ---------- */
+
+@media (max-width: 780px) {
+    .acceso {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+
+    .acceso-lateral {
+        padding: 2rem 1.5rem 2.25rem;
+    }
+
+    .acceso-lateral h1 {
+        max-width: none;
+        margin-bottom: 0.5rem;
+        font-size: 1.9rem;
+    }
+
+    .acceso-panel {
+        justify-content: flex-start;
+        padding-top: 2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}

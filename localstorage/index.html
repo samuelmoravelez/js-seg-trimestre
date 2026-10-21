@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ingresar o crear cuenta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="acceso">
+        <aside class="acceso-lateral">
+            <h1>Tu cuenta, en un solo lugar</h1>
+            <p>Entra con tu usuario o crea una cuenta nueva en menos de un minuto.</p>
+        </aside>
+
+        <section class="acceso-panel">
+            <div class="pestanas" role="tablist" aria-label="Acceso">
+                <button type="button" class="pestana activa" role="tab" id="tabLogin"
+                        aria-selected="true" aria-controls="loginForm">Iniciar sesión</button>
+                <button type="button" class="pestana" role="tab" id="tabRegistro"
+                        aria-selected="false" aria-controls="registerForm">Crear cuenta</button>
+            </div>
+
+            <form id="loginForm" class="formulario" role="tabpanel" aria-labelledby="tabLogin">
+                <h2>Bienvenido de nuevo</h2>
+
+                <div class="campo">
+                    <label for="logUsername">Usuario</label>
+                    <input type="text" id="logUsername" name="username" placeholder="Tu nombre de usuario"
+                           autocomplete="username" required>
+                </div>
+
+                <div class="campo">
+                    <label for="logPassword">Contraseña</label>
+                    <div class="campo-clave">
+                        <input type="password" id="logPassword" name="password" placeholder="Tu contraseña"
+                               autocomplete="current-password" required>
+                        <button type="button" class="ver-clave" data-target="logPassword"
+                                aria-label="Mostrar contraseña">Mostrar</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="boton">Ingresar</button>
+                <p class="cambio">¿No tienes cuenta? <button type="button" class="enlace" data-ir="registro">Crea una</button></p>
+            </form>
+
+            <form id="registerForm" class="formulario" role="tabpanel" aria-labelledby="tabRegistro" hidden>
+                <h2>Crea tu cuenta</h2>
+
+                <div class="campo">
+                    <label for="regUsername">Usuario</label>
+                    <input type="text" id="regUsername" name="username" placeholder="Elige un nombre de usuario"
+                           autocomplete="username" required>
+                </div>
+
+                <div class="campo">
+                    <label for="regPassword">Contraseña</label>
+                    <div class="campo-clave">
+                        <input type="password" id="regPassword" name="password" placeholder="Elige una contraseña"
+                               autocomplete="new-password" required>
+                        <button type="button" class="ver-clave" data-target="regPassword"
+                                aria-label="Mostrar contraseña">Mostrar</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="boton">Registrarse</button>
+                <p class="cambio">¿Ya tienes cuenta? <button type="button" class="enlace" data-ir="login">Inicia sesión</button></p>
+            </form>
+        </section>
+    </main>
+
+    <script src="auth.js"></script>
+    <script>
+        // Cambiar entre iniciar sesión y registro (no toca la lógica de auth.js)
+        const formLogin = document.getElementById('loginForm');
+        const formRegistro = document.getElementById('registerForm');
+        const tabLogin = document.getElementById('tabLogin');
+        const tabRegistro = document.getElementById('tabRegistro');
+
+        function mostrar(vista) {
+            const esLogin = vista === 'login';
+            formLogin.hidden = !esLogin;
+            formRegistro.hidden = esLogin;
+            tabLogin.classList.toggle('activa', esLogin);
+            tabRegistro.classList.toggle('activa', !esLogin);
+            tabLogin.setAttribute('aria-selected', esLogin);
+            tabRegistro.setAttribute('aria-selected', !esLogin);
+            (esLogin ? formLogin : formRegistro).querySelector('input').focus();
+        }
+
+        tabLogin.addEventListener('click', () => mostrar('login'));
+        tabRegistro.addEventListener('click', () => mostrar('registro'));
+        document.querySelectorAll('[data-ir]').forEach(b =>
+            b.addEventListener('click', () => mostrar(b.dataset.ir)));
+
+        // Mostrar / ocultar contraseña
+        document.querySelectorAll('.ver-clave').forEach(boton => {
+            boton.addEventListener('click', () => {
+                const input = document.getElementById(boton.dataset.target);
+                const oculta = input.type === 'password';
+                input.type = oculta ? 'text' : 'password';
+                boton.textContent = oculta ? 'Ocultar' : 'Mostrar';
+                boton.setAttribute('aria-label', oculta ? 'Ocultar contraseña' : 'Mostrar contraseña');
+            });
+        });
+    </script>
+</body>
+</html>

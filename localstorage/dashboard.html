@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+    <header class="barra">
+        <h2 id="welcomeMessage">Bienvenido</h2>
+        <button id="logoutBtn" type="button">Cerrar sesión</button>
+    </header>
+
+    <main class="panel">
+        <section class="ficha">
+            <h3>Agregar nuevo registro</h3>
+            <form id="crudForm">
+                <input type="hidden" id="recordId"> <!-- Campo oculto para saber si actualizamos o creamos -->
+
+                <label for="itemName">Nombre del ítem</label>
+                <input type="text" id="itemName" placeholder="Escribe un nombre" autocomplete="off" required>
+
+                <button type="submit" id="saveBtn">Guardar</button>
+            </form>
+        </section>
+
+        <section class="registros">
+            <h3>Mis registros</h3>
+            <ul id="recordList"></ul>
+        </section>
+    </main>
+
+    <script src="crud.js"></script>
+</body>
+</html>
